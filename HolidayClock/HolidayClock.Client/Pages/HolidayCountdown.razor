@@ -1,0 +1,92 @@
+﻿@inherits ComponentBase
+
+<PageTitle>@Holiday Countdown @GetHolidayYear() - Find out how many days until @Holiday!</PageTitle>
+
+    @HeaderContent
+
+    <div class="countdown">
+
+        @if (Loading)
+    {
+        @LoadingContent
+    }
+    else
+    {
+        <HolidayClock.Client.Components.Countdown EndDate="new DateTime(GetHolidayYear(), Month, Day)" WaitingMessage="@GetWaitingMessage()" FinishedMessage="@GetFinishedMessage()" />
+        @MainContent
+    }
+
+</div>
+
+@FooterContent
+
+@code {
+    [Parameter]
+    public string Holiday { get; set; } = "";
+
+    [Parameter]
+    public int Day { get; set; } = 1;
+
+    [Parameter]
+    public int Month { get; set; } = 1;
+
+    [Parameter]
+    public RenderFragment LoadingContent { get; set; }
+
+    [Parameter]
+    public RenderFragment HeaderContent { get; set; }
+
+    [Parameter]
+    public RenderFragment MainContent { get; set; }
+
+    [Parameter]
+    public RenderFragment FooterContent { get; set; }
+
+    [Parameter]
+    public string ThemeClass { get; set; } = "";
+
+    public bool Loading { get; set; } = true;
+
+    public virtual string GetWaitingMessage()
+    {
+        return $"until {Holiday}";
+    }
+
+    public virtual string GetFinishedMessage()
+    {
+        return $"Happy {Holiday}!";
+    }
+
+    public int GetHolidayYear()
+    {
+        var currentYear = DateTime.Now.Year;
+        var holidayDate = new DateTime(currentYear, Month, Day);
+        if (DateTime.Now > holidayDate)
+        {
+            return currentYear + 1;
+        }
+        return currentYear;
+    }
+
+    public static int GetHolidayYear(int month, int day)
+    {
+        var currentYear = DateTime.Now.Year;
+        var holidayDate = new DateTime(currentYear, month, day);
+        if (DateTime.Now > holidayDate)
+        {
+            return currentYear + 1;
+        }
+        return currentYear;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Loading = false;
+            StateHasChanged();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

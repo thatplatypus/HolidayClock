@@ -1,0 +1,25 @@
+﻿@rendermode @(new InteractiveAutoRenderMode(prerender: false)) 
+@page "/xmas"
+
+<HolidayCountdown 
+    Day="25"
+    Month="12"
+    Holiday="Christmas">
+    <HeaderContent>
+        <HolidayClock.Client.Components.Header />
+</HeaderContent>
+<LoadingContent>
+        <div class="christmas-tree-container">
+            <HolidayClock.Client.Components.ChristmasTree />
+        </div>
+        <div>Loading<span><HolidayClock.Client.Components.EllipsisLoader /></span></div>
+</LoadingContent>
+<MainContent>
+        <div class="present-container">
+            <HolidayClock.Client.Components.Present />
+        </div>
+</MainContent>
+<FooterContent>
+    <HolidayClock.Client.Components.Footer />
+</FooterContent>
+</HolidayCountdown>

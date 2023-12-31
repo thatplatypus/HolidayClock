@@ -1,0 +1,10 @@
+﻿@inject NavigationManager _navigationManager
+@rendermode @(new InteractiveAutoRenderMode(prerender: false)) 
+@page "/"
+
+@code {
+    protected override void OnInitialized()
+        {
+    _navigationManager.NavigateTo("/newyears");
+    }
+}

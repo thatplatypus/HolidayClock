@@ -1,0 +1,23 @@
+﻿@rendermode @(new InteractiveAutoRenderMode(prerender: false))
+@page "/newyears"
+
+<HolidayCountdown Day="1"
+             Month="1"
+             Holiday="New Year's">
+             <HeaderContent>
+                 <HolidayClock.Client.Components.Balloons Year="@HolidayCountdown.GetHolidayYear(1, 1).ToString()" />
+             </HeaderContent>
+    <LoadingContent>
+        
+        <div>Loading<span><HolidayClock.Client.Components.EllipsisLoader /></span></div>
+    </LoadingContent>
+    <MainContent>
+    </MainContent>
+</HolidayCountdown>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}

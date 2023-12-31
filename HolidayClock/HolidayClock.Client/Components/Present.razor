@@ -1,0 +1,36 @@
+﻿@using BlazorAnimation
+
+<Animation Effect="@HoverEffect" Enabled="RunHoverAnimation">
+    <Animation Effect="@ClickEffect" Enabled="RunClickAnimation" OnAnimationEnd="ClickEnd">
+        <div @onmouseover="MouseOver" @onmouseout="MouseOut" @onclick="OnClick" class="holiday-present"></div>
+    </Animation>
+</Animation>
+
+@code {
+    private bool RunHoverAnimation = false;
+    private bool RunClickAnimation = false;
+    private AnimationEffect HoverEffect = Effect.Wobble;
+    private AnimationEffect ClickEffect = Effect.Tada;
+    private readonly AnimationEffect[] Effects = { Effect.Bounce, Effect.RubberBand, Effect.Jello, Effect.JackInTheBox, Effect.Tada, Effect.HeadShake };
+
+    private void MouseOver()
+    {
+        RunHoverAnimation = true;
+    }
+
+    private void MouseOut()
+    {
+        RunHoverAnimation = false;
+    }
+
+    private void OnClick()
+    {
+        ClickEffect = Effects[new Random().Next(Effects.Length)];
+        RunClickAnimation = true;
+    }
+
+    private void ClickEnd()
+    {
+        RunClickAnimation = false;
+    }
+}

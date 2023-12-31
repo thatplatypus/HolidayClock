@@ -1,0 +1,33 @@
+﻿<div>
+    @DaysDifference.Days Days <span>@DaysDifference.Hours Hours</span> <span>@DaysDifference.Minutes Minutes</span> <span>@DaysDifference.Seconds Seconds </span> <span>@(EndDate > DateTime.Now ? WaitingMessage : FinishedMessage)</span>
+</div>
+
+@code {
+    [Parameter]
+    public DateTime EndDate { get; set; }
+
+    public TimeSpan DaysDifference { get; set; }
+
+    [Parameter]
+    public string WaitingMessage { get; set; } = "";
+
+    [Parameter]
+    public string FinishedMessage { get; set; } = "";
+
+    private Timer _timer;
+
+    protected override void OnInitialized()
+    {
+        _timer = new Timer(_ => { DaysDifference = EndDate - DateTime.Now; InvokeAsync(StateHasChanged); }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+    }
+
+    protected override void OnParametersSet()
+    {
+        DaysDifference = EndDate - DateTime.Now;
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
+}

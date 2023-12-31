@@ -1,0 +1,73 @@
+﻿@inject NavigationManager NavigationManager
+@{
+    var holiday = NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf("/")+1);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="HolidayClock.styles.css" />
+    @if(!string.IsNullOrWhiteSpace(holiday))
+    {
+        <link rel="stylesheet" href="@(holiday).css" />
+    }
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <HeadOutlet @rendermode="@InteractiveWebAssembly" />
+</head>
+
+<body>
+    <Routes @rendermode="@InteractiveWebAssembly" />
+    @if(holiday?.Equals("xmas", StringComparison.OrdinalIgnoreCase) ?? false)
+    {
+        <script type="module">
+            import { snowflakeCursor } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
+
+            new snowflakeCursor();
+        </script>
+        <script src="snowstorm.js"></script>
+    }
+    @if(holiday?.Equals("newyears", StringComparison.OrdinalIgnoreCase) ?? false)
+    {
+        <div class="fireworks">
+
+        </div>
+        <script type="module">
+            import { emojiCursor } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
+            const options = {
+                emoji: ["🎉", "🥳", "✨", "🎊", "🍾", "🥂", "🎈"],
+            }
+            new emojiCursor(options);
+        </script>
+        <script src="https://unpkg.com/fireworks-js@2.x/dist/index.umd.js"></script>
+        <script type="module" src="https://unpkg.com/three@0.159.0/build/three.module.js"></script>
+        <script type="module" src="https://unpkg.com/three@0.159.0/examples/jsm/controls/OrbitControls.js"></script>
+        <script type="module" src="https://unpkg.com/three@0.159.0/examples/jsm/loaders/RGBELoader.js"></script>
+        <script>
+            const container = document.querySelector('.fireworks');
+            const fireworks = new Fireworks.default(container);
+            fireworks.start();
+        </script>
+        <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js" crossorigin="anonymous"></script>
+        <script type="importmap">
+            {
+              "imports": {
+                "three": "https://unpkg.com/three@0.159.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.159.0/examples/jsm/"
+              }
+            }
+        </script>
+        <script type="module" src="newyears.js"></script>
+
+    }
+    <script src="_framework/blazor.web.js"></script>
+    <script src="_content/BlazorAnimation/blazorAnimationInterop.js"></script>
+
+</body>
+
+</html>

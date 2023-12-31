@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34310.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HolidayClock", "HolidayClock\HolidayClock\HolidayClock.csproj", "{2F40551C-5EDA-4C59-9178-3F21F189996E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HolidayClock.Client", "HolidayClock\HolidayClock.Client\HolidayClock.Client.csproj", "{D19DEDCA-6339-495C-A1E5-ACDC17AD1543}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F40551C-5EDA-4C59-9178-3F21F189996E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F40551C-5EDA-4C59-9178-3F21F189996E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F40551C-5EDA-4C59-9178-3F21F189996E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F40551C-5EDA-4C59-9178-3F21F189996E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D19DEDCA-6339-495C-A1E5-ACDC17AD1543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D19DEDCA-6339-495C-A1E5-ACDC17AD1543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D19DEDCA-6339-495C-A1E5-ACDC17AD1543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D19DEDCA-6339-495C-A1E5-ACDC17AD1543}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B6E9135-CCDE-4444-9EFD-424FF4A758DC}
+	EndGlobalSection
+EndGlobal
